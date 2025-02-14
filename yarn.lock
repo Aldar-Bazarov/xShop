@@ -599,10 +599,20 @@
   dependencies:
     "@babel/types" "^7.20.7"
 
+"@types/cookie@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.6.0.tgz#eac397f28bf1d6ae0ae081363eca2f425bedf0d5"
+  integrity sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==
+
 "@types/estree@1.0.6", "@types/estree@^1.0.6":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.6.tgz#628effeeae2064a1b4e79f78e81d87b7e5fc7b50"
   integrity sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==
+
+"@types/history@^4.7.11":
+  version "4.7.11"
+  resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.11.tgz#56588b17ae8f50c53983a524fc3cc47437969d64"
+  integrity sha512-qjDJRrmvBMiTx+jyLxvLfJU7UznFuokDv4f3WRuriHKERccVpFU+8XMQUAbDzoiJCsmexxRExQeMwwCdamSKDA==
 
 "@types/json-schema@^7.0.15":
   version "7.0.15"
@@ -621,7 +631,15 @@
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-19.0.3.tgz#0804dfd279a165d5a0ad8b53a5b9e65f338050a4"
   integrity sha512-0Knk+HJiMP/qOZgMyNFamlIjw9OFCsyC2ZbigmEEyXXixgre6IQpm/4V+r3qH4GC1JPvRJKInw+on2rV6YZLeA==
 
-"@types/react@^19.0.8":
+"@types/react-router@^5.1.20":
+  version "5.1.20"
+  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-5.1.20.tgz#88eccaa122a82405ef3efbcaaa5dcdd9f021387c"
+  integrity sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==
+  dependencies:
+    "@types/history" "^4.7.11"
+    "@types/react" "*"
+
+"@types/react@*", "@types/react@^19.0.8":
   version "19.0.8"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-19.0.8.tgz#7098e6159f2a61e4f4cef2c1223c044a9bec590e"
   integrity sha512-9P/o1IGdfmQxrujGbIMDyYaaCykhLKc0NGCtYcECNUr9UAaDe4gwvV9bR6tvd5Br1SG0j+PBpbKr2UYY8CwqSw==
@@ -915,6 +933,11 @@ convert-source-map@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-2.0.0.tgz#4b560f649fc4e918dd0ab75cf4961e8bc882d82a"
   integrity sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==
+
+cookie@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/cookie/-/cookie-1.0.2.tgz#27360701532116bd3f1f9416929d176afe1e4610"
+  integrity sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==
 
 cross-spawn@^7.0.0, cross-spawn@^7.0.6:
   version "7.0.6"
@@ -1657,6 +1680,11 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
+prettier@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.5.1.tgz#22fac9d0b18c0b92055ac8fb619ac1c7bef02fb7"
+  integrity sha512-hPpFQvHwL3Qv5AdRvBFMhnKo4tYxp0ReXiPn2bxkiohEX6mBeBwEpBSQTkD458RaaDKQMYSp4hX4UtfUTA5wDw==
+
 punycode@^2.1.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.1.tgz#027422e2faec0b25e1549c3e1bd8309b9133b6e5"
@@ -1678,6 +1706,16 @@ react-refresh@^0.14.2:
   version "0.14.2"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.14.2.tgz#3833da01ce32da470f1f936b9d477da5c7028bf9"
   integrity sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==
+
+react-router@^7.1.5:
+  version "7.1.5"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-7.1.5.tgz#c9e19d329d9ce2215fdae844ab6b023b911094db"
+  integrity sha512-8BUF+hZEU4/z/JD201yK6S+UYhsf58bzYIDq2NS1iGpwxSXDu7F+DeGSkIXMFBuHZB21FSiCzEcUb18cQNdRkA==
+  dependencies:
+    "@types/cookie" "^0.6.0"
+    cookie "^1.0.1"
+    set-cookie-parser "^2.6.0"
+    turbo-stream "2.4.0"
 
 react@^19.0.0:
   version "19.0.0"
@@ -1766,6 +1804,11 @@ semver@^7.6.0:
   version "7.7.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.7.1.tgz#abd5098d82b18c6c81f6074ff2647fd3e7220c9f"
   integrity sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==
+
+set-cookie-parser@^2.6.0:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/set-cookie-parser/-/set-cookie-parser-2.7.1.tgz#3016f150072202dfbe90fadee053573cc89d2943"
+  integrity sha512-IOc8uWeOZgnb3ptbCURJWNjWUPcO3ZnTTdzsurqERrP6nPyv+paC55vJM0LpOlT2ne+Ix+9+CRG1MNLlyZ4GjQ==
 
 shebang-command@^2.0.0:
   version "2.0.0"
@@ -1935,6 +1978,11 @@ ts-interface-checker@^0.1.9:
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz#784fd3d679722bc103b1b4b8030bcddb5db2a699"
   integrity sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==
+
+turbo-stream@2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/turbo-stream/-/turbo-stream-2.4.0.tgz#1e4fca6725e90fa14ac4adb782f2d3759a5695f0"
+  integrity sha512-FHncC10WpBd2eOmGwpmQsWLDoK4cqsA/UT/GqNoaKOQnT8uzhtCbg3EoUDMvqpOSAI0S26mr0rkjzbOO6S3v1g==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
