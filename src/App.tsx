@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router';
 import { AppLayout } from './components/app-layout/app-layout';
 import { Login } from './pages/login/login';
 import { Toaster } from '@/components/ui/toaster';
+import { ProtectedRoute } from './components/protected-route/protected-route';
 
 function App() {
   return (
@@ -9,7 +10,13 @@ function App() {
       <Routes>
         <Route index element={<Login />} />
 
-        <Route element={<AppLayout />}>
+        <Route
+          element={
+            <ProtectedRoute>
+              <AppLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="employees" element={<>employees</>} />
           <Route path="goods" element={<>goods</>} />
           <Route path="reports" element={<>reports</>} />

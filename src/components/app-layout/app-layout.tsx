@@ -1,13 +1,16 @@
 import { Outlet, NavLink } from 'react-router';
 import { cn } from '@/lib/utils';
 import { ModeToggle } from '../mode-toggle/mode-toggle';
+import { Button } from '../ui/button';
+import { AuthService } from '@/services/auth.service';
+import { LogOut } from 'lucide-react';
 
 export const AppLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="bg-secondary border-b">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16 mr-10">
+          <div className="flex items-center justify-between h-16">
             <h3 className="text-xl font-bold">xShop</h3>
             <nav>
               <ul className="flex items-center gap-4">
@@ -78,9 +81,13 @@ export const AppLayout = () => {
                 </li>
               </ul>
             </nav>
+            <div className="flex gap-2">
+              <Button variant="outline" onClick={() => AuthService.logout()}>
+                <LogOut /> Выйти
+              </Button>
+              <ModeToggle />
+            </div>
           </div>
-
-          <ModeToggle />
         </div>
       </header>
 

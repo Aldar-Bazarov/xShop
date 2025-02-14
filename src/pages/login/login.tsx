@@ -10,11 +10,12 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from '@/hooks/use-toast';
 import { Checkbox } from '@/components/ui/checkbox';
+import { AuthService } from '@/services/auth.service';
 
 const formSchema = z.object({
   username: z.string().nonempty({
@@ -27,6 +28,7 @@ const formSchema = z.object({
 });
 
 export const Login = () => {
+  const location = useLocation();
   const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -38,13 +40,19 @@ export const Login = () => {
     },
   });
 
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log('data', data);
-    toast({
-      title: 'Вы вошли в систему',
-    });
-
-    navigate('/employees');
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+    try {
+      await AuthService.login(data.username, data.password);
+      toast({
+        title: 'Вы вошли в систему',
+      });
+      navigate(location.state.from.pathname ?? 'employees', { replace: true });
+    } catch (error) {
+      toast({
+        title: 'Ошибка входа',
+        variant: 'destructive',
+      });
+    }
   }
 
   return (
@@ -121,7 +129,9 @@ export const Login = () => {
           </form>
         </Form>
       </div>
-      <ModeToggle />
+      <div className="absolute top-2 right-2">
+        <ModeToggle />
+      </div>
     </div>
   );
 };
