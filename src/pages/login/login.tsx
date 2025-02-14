@@ -16,6 +16,7 @@ import { z } from 'zod';
 import { toast } from '@/hooks/use-toast';
 import { Checkbox } from '@/components/ui/checkbox';
 import { AuthService } from '@/services/auth.service';
+import { useErrorHandler } from '@/hooks/use-error-handler';
 
 const formSchema = z.object({
   username: z.string().nonempty({
@@ -30,6 +31,7 @@ const formSchema = z.object({
 export const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const errorHandler = useErrorHandler();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -48,10 +50,7 @@ export const Login = () => {
       });
       navigate(location.state.from.pathname ?? 'employees', { replace: true });
     } catch (error) {
-      toast({
-        title: 'Ошибка входа',
-        variant: 'destructive',
-      });
+      errorHandler(error);
     }
   }
 
