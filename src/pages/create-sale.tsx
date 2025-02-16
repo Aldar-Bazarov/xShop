@@ -12,17 +12,17 @@ const createSaleSchema = z.object({
 });
 
 const formFields = [
-  { 
-    name: 'goodId', 
-    label: 'ID товара', 
+  {
+    name: 'goodId',
+    label: 'ID товара',
     type: 'number',
-    placeholder: 'Введите ID товара' 
+    placeholder: 'Введите ID товара',
   },
-  { 
-    name: 'count', 
-    label: 'Количество', 
+  {
+    name: 'count',
+    label: 'Количество',
     type: 'number',
-    placeholder: 'Введите количество' 
+    placeholder: 'Введите количество',
   },
 ];
 

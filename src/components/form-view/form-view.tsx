@@ -9,7 +9,13 @@ import {
   FormDescription,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Card, CardTitle } from '@/components/ui/card';
 import { UseFormReturn } from 'react-hook-form';
 import { LoadingSpinner } from '../ui/loading-overlay';
@@ -49,7 +55,9 @@ export const FormView = ({
       render={({ field: fieldProps }) => (
         <FormItem className="w-[470px]">
           <FormLabel>{field.label}</FormLabel>
-          {field.description && <FormDescription>{field.description}</FormDescription>}
+          {field.description && (
+            <FormDescription>{field.description}</FormDescription>
+          )}
           <FormControl>
             {field.isSelect ? (
               <Select
@@ -61,8 +69,8 @@ export const FormView = ({
                 </SelectTrigger>
                 <SelectContent>
                   {field.options?.map((option) => (
-                    <SelectItem 
-                      key={option.value} 
+                    <SelectItem
+                      key={option.value}
                       value={option.value.toString()}
                     >
                       {option.label}
@@ -114,4 +122,4 @@ export const FormView = ({
       </Card>
     </LoadingSpinner>
   );
-}; 
+};

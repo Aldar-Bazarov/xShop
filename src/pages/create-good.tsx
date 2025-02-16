@@ -14,21 +14,21 @@ const createGoodSchema = z.object({
 const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
 const formFields = [
-  { 
-    name: 'count', 
-    label: 'Количество', 
+  {
+    name: 'count',
+    label: 'Количество',
     type: 'number',
-    placeholder: 'Введите количество' 
+    placeholder: 'Введите количество',
   },
-  { 
-    name: 'size', 
-    label: 'Размер', 
+  {
+    name: 'size',
+    label: 'Размер',
     isSelect: true,
     placeholder: 'Выберите размер',
-    options: SIZES.map(size => ({ 
+    options: SIZES.map((size) => ({
       value: size,
-      label: size 
-    }))
+      label: size,
+    })),
   },
 ];
 
