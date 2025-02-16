@@ -1,99 +1,152 @@
 import { Outlet, NavLink } from 'react-router';
-import { cn } from '@/lib/utils';
 import { ModeToggle } from '../mode-toggle/mode-toggle';
 import { Button } from '../ui/button';
 import { AuthService } from '@/services/auth.service';
-import { LogOut } from 'lucide-react';
+import {
+  Sidebar,
+  SidebarProvider,
+  SidebarTrigger,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupContent,
+  SidebarInset,
+  SidebarHeader,
+  SidebarFooter,
+} from '../ui/sidebar';
+import {
+  AddGoodIcon,
+  BanknoteIcon,
+  EmployeesReportIcon,
+  FireEmployeeIcon,
+  GoodsReportIcon,
+  NewEmployeeIcon,
+  PurchaseIcon,
+} from '@/assets/icons';
+import { Separator } from '../ui/separator';
+import { LogoutIcon } from '@/assets/icons/logout-icon';
+
+const menuItems = {
+  main: [
+    {
+      url: '/sale',
+      icon: <BanknoteIcon />,
+      title: 'Продажа',
+    },
+    {
+      url: '/good',
+      icon: <AddGoodIcon />,
+      title: 'Добавить товар',
+    },
+    {
+      url: '/purchase',
+      icon: <PurchaseIcon />,
+      title: 'Закупка',
+    },
+    {
+      url: '/new-employee',
+      icon: <NewEmployeeIcon />,
+      title: 'Новый сотрудник',
+    },
+    {
+      url: '/fire-employee',
+      icon: <FireEmployeeIcon />,
+      title: 'Уволить сотрудника',
+    },
+  ],
+  report: [
+    {
+      url: '/employees-reports',
+      icon: <EmployeesReportIcon />,
+      title: 'По сотрудникам',
+    },
+    {
+      url: '/goods-reports',
+      icon: <GoodsReportIcon />,
+      title: 'По товарам',
+    },
+  ],
+};
 
 export const AppLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="bg-secondary border-b">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <h3 className="text-xl font-bold">xShop</h3>
-            <nav>
-              <ul className="flex items-center gap-4">
-                <li>
-                  <NavLink
-                    to="/employees"
-                    className={({ isActive }) =>
-                      cn(
-                        'px-3 py-2 rounded-md hover:bg-accent',
-                        isActive && 'bg-accent text-accent-foreground font-bold'
-                      )
-                    }
-                  >
-                    Сотрудники
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/goods"
-                    className={({ isActive }) =>
-                      cn(
-                        'px-3 py-2 rounded-md hover:bg-accent',
-                        isActive && 'bg-accent text-accent-foreground font-bold'
-                      )
-                    }
-                  >
-                    Товары
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/reports"
-                    className={({ isActive }) =>
-                      cn(
-                        'px-3 py-2 rounded-md hover:bg-accent',
-                        isActive && 'bg-accent text-accent-foreground font-bold'
-                      )
-                    }
-                  >
-                    Отчеты
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/sales"
-                    className={({ isActive }) =>
-                      cn(
-                        'px-3 py-2 rounded-md hover:bg-accent',
-                        isActive && 'bg-accent text-accent-foreground font-bold'
-                      )
-                    }
-                  >
-                    Продажи
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/purchases"
-                    className={({ isActive }) =>
-                      cn(
-                        'px-3 py-2 rounded-md hover:bg-accent',
-                        isActive && 'bg-accent text-accent-foreground font-bold'
-                      )
-                    }
-                  >
-                    Закупки
-                  </NavLink>
-                </li>
-              </ul>
-            </nav>
-            <div className="flex gap-2">
-              <Button variant="outline" onClick={() => AuthService.logout()}>
-                <LogOut /> Выйти
-              </Button>
-              <ModeToggle />
+    <SidebarProvider className="bg-secondary">
+      <Sidebar className="bg-background">
+        <SidebarHeader className="ml-10 mt-5">
+          <span className="text-lg font-bold">
+            <span className="text-primary">x</span>Shop
+          </span>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarGroup className="p-5">
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {menuItems.main.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <NavLink
+                        to={item.url}
+                        className="flex items-center gap-2"
+                      >
+                        {item.icon}
+                        <span>{item.title}</span>
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+          <Separator />
+          <SidebarGroup className="p-5">
+            <SidebarGroupLabel>Отчёты</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {menuItems.report.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <NavLink
+                        to={item.url}
+                        className="flex items-center gap-2"
+                      >
+                        {item.icon}
+                        <span>{item.title}</span>
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+        <Separator />
+        <SidebarFooter className="flex flex-row justify-between items-center">
+          <Button variant="ghost" onClick={() => AuthService.logout()}>
+            <LogoutIcon />
+            Logout
+          </Button>
+          <ModeToggle />
+        </SidebarFooter>
+      </Sidebar>
+      <SidebarInset className="flex-1 bg-secondary">
+        <main className="bg-secondary">
+          <header className="flex h-16 shrink-0 items-center bg-background">
+            <div className="flex items-center justify-between w-full pl-5 pr-10">
+              <SidebarTrigger />
+              <div>
+                <p className="text-sm font-medium">Иван Иванов</p>
+                <p className="text-xs">Менеджер</p>
+              </div>
             </div>
+          </header>
+          <div className="flex-1 container mx-auto px-8 py-8">
+            <Outlet />
           </div>
-        </div>
-      </header>
-
-      <main className="flex-1 container mx-auto px-4 py-6">
-        <Outlet />
-      </main>
-    </div>
+        </main>
+      </SidebarInset>
+    </SidebarProvider>
   );
 };
