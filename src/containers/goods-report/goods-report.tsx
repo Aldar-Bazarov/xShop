@@ -1,9 +1,9 @@
-import { ReportView } from '@/components/protected-route/report-view';
 import { GoodSalesInfo, useReportsStore } from '@/store/reports.store';
 import { useEffect, useState } from 'react';
 import { goodsReportColumns, goodsReportFilters } from './properties';
+import { ReportView } from '@/components/views/report-view';
 
-export const GoodsReportPage = () => {
+export const GoodsReportContainer = () => {
   const { getGoodSalesReport } = useReportsStore();
   const [data, setData] = useState<GoodSalesInfo[]>();
 

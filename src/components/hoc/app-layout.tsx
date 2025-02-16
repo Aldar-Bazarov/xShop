@@ -1,5 +1,5 @@
 import { Outlet, NavLink } from 'react-router';
-import { ModeToggle } from '../mode-toggle/mode-toggle';
+import { ModeToggle } from '../ui/mode-toggle';
 import { Button } from '../ui/button';
 import { AuthService } from '@/services/auth.service';
 import {
@@ -76,10 +76,7 @@ export const AppLayout = () => {
     <SidebarProvider className="bg-secondary">
       <Sidebar className="bg-background">
         <SidebarHeader className="ml-10 mt-5">
-        <NavLink
-                        to={'/'}
-                        className="text-lg font-bold"
-                      >
+          <NavLink to={'/'} className="text-lg font-bold">
             <span className="text-primary">x</span>Shop
           </NavLink>
         </SidebarHeader>

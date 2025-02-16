@@ -1,4 +1,4 @@
-import { ModeToggle } from '@/components/mode-toggle/mode-toggle';
+import { ModeToggle } from '@/components/ui/mode-toggle';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -23,6 +23,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { useTheme } from '@/components/providers/theme-provider';
 
 const formSchema = z.object({
   login: z.string().nonempty({
@@ -34,10 +35,11 @@ const formSchema = z.object({
   rememberMe: z.boolean().optional(),
 });
 
-export const Login = () => {
+export const LoginContainer = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const errorHandler = useErrorHandler();
+  const { theme } = useTheme();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -61,7 +63,9 @@ export const Login = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-primary">
+    <div
+      className={`min-h-screen flex items-center justify-center ${theme === 'dark' ? 'bg-secondary' : 'bg-primary'}`}
+    >
       <Card className="w-[630px] h-[735px] py-10 px-[33px]">
         <CardHeader className="text-center mb-8">
           <CardTitle className="text-3xl font-semibold mb-2">Войти</CardTitle>
@@ -107,7 +111,7 @@ export const Login = () => {
         </CardContent>
       </Card>
       <div className="absolute top-2 right-2">
-        <ModeToggle />
+        <ModeToggle className="bg-background text-primary" />
       </div>
     </div>
   );

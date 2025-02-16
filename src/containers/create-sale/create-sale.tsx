@@ -4,29 +4,10 @@ import { z } from 'zod';
 import { useSalesStore } from '@/store/sales.store';
 import { useErrorHandler } from '@/hooks/use-error-handler';
 import { toast } from '@/hooks/use-toast';
-import { FormView } from '@/components/form-view/form-view';
+import { FormView } from '@/components/views';
+import { createSaleFields, createSaleSchema } from './properties';
 
-const createSaleSchema = z.object({
-  count: z.number().min(1, 'Количество должно быть больше 0'),
-  goodId: z.number().min(1, 'Выберите товар'),
-});
-
-const formFields = [
-  {
-    name: 'goodId',
-    label: 'ID товара',
-    type: 'number',
-    placeholder: 'Введите ID товара',
-  },
-  {
-    name: 'count',
-    label: 'Количество',
-    type: 'number',
-    placeholder: 'Введите количество',
-  },
-];
-
-export const CreateSalePage = () => {
+export const CreateSaleContainer = () => {
   const { loading, createSale } = useSalesStore();
   const errorHandler = useErrorHandler();
 
@@ -56,7 +37,7 @@ export const CreateSalePage = () => {
       title="Создать продажу"
       loading={loading}
       form={form}
-      fields={formFields}
+      fields={createSaleFields}
       onSubmit={onSubmit}
     />
   );

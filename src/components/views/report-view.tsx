@@ -17,20 +17,20 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useState } from 'react';
-import { Button } from '../ui/button';
-import { Popover, PopoverTrigger } from '../ui/popover';
+import { Button } from './../ui/button';
+import { Popover, PopoverTrigger } from './../ui/popover';
 import { DownArrowIcon } from '@/assets/icons/down-arrow-icon';
 import { ResetIcon } from '@/assets/icons/reset-icon';
 import { FilterIcon } from '@/assets/icons/filter-icon';
-import { Separator } from '../ui/separator';
-import { Title } from '../ui/title';
+import { Separator } from './../ui/separator';
+import { Title } from './../ui/title';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '../ui/dialog';
+} from './../ui/dialog';
 import {
   ChevronLeft,
   ChevronRight,
@@ -43,8 +43,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../ui/select';
-import { ChartConfig } from '../ui/chart';
+} from './../ui/select';
+import { ChartConfig } from './../ui/chart';
 
 export interface IReportFilter {
   title: string;

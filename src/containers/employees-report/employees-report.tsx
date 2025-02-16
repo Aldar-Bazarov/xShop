@@ -1,11 +1,11 @@
-import {
-  employeesReportColumns,
-  employeesReportCharts,
-  employeesReportFilters,
-} from '@/pages/employees-report/properties';
-import { ReportView } from '@/components/protected-route/report-view';
 import { EmployeeSalesInfo, useReportsStore } from '@/store/reports.store';
 import { useEffect, useState } from 'react';
+import {
+  employeesReportCharts,
+  employeesReportColumns,
+  employeesReportFilters,
+} from './properties';
+import { ReportView } from '@/components/views/report-view';
 
 const chartsData: Record<string, any> = {
   sumOfSales: [
@@ -25,7 +25,7 @@ const chartsData: Record<string, any> = {
   ],
 };
 
-export const EmployeesReportPage = () => {
+export const EmployeesReportContainer = () => {
   const { getEmployeeSalesReport } = useReportsStore();
   const [data, setData] = useState<EmployeeSalesInfo[]>();
 

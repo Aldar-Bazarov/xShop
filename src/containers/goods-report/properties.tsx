@@ -1,7 +1,7 @@
 import { DownArrowIcon } from '@/assets/icons/down-arrow-icon';
 import { GoodSalesInfo } from '@/store/reports.store';
 import { ColumnDef } from '@tanstack/react-table';
-import { IReportFilter } from '../../components/protected-route/report-view';
+import { IReportFilter } from '../../components/report-view';
 import { PopoverContent } from '../../components/ui/popover';
 import { Calendar } from '../../components/ui/calendar';
 import { Button } from '../../components/ui/button';

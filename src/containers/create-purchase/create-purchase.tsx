@@ -4,37 +4,10 @@ import { z } from 'zod';
 import { usePurchasesStore } from '@/store/purchases.store';
 import { useErrorHandler } from '@/hooks/use-error-handler';
 import { toast } from '@/hooks/use-toast';
-import { FormView } from '@/components/form-view/form-view';
+import { FormView } from '@/components/views';
+import { craetePurchaseFields, createPurchaseSchema } from './properties';
 
-const createPurchaseSchema = z.object({
-  priceInKopeks: z.number().min(1, 'Цена должна быть больше 0'),
-  count: z.number().min(1, 'Количество должно быть больше 0'),
-  goodId: z.number().min(1, 'Выберите товар'),
-});
-
-const formFields = [
-  {
-    name: 'goodId',
-    label: 'ID товара',
-    type: 'number',
-    placeholder: 'Введите ID товара',
-  },
-  {
-    name: 'priceInKopeks',
-    label: 'Цена',
-    type: 'number',
-    placeholder: 'Введите цену в копейках',
-    description: 'Цена должна быть в копейках',
-  },
-  {
-    name: 'count',
-    label: 'Количество',
-    type: 'number',
-    placeholder: 'Введите количество',
-  },
-];
-
-export const CreatePurchasePage = () => {
+export const CreatePurchaseContainer = () => {
   const { loading, createPurchase } = usePurchasesStore();
   const errorHandler = useErrorHandler();
 
@@ -65,7 +38,7 @@ export const CreatePurchasePage = () => {
       title="Создать закупку"
       loading={loading}
       form={form}
-      fields={formFields}
+      fields={craetePurchaseFields}
       onSubmit={onSubmit}
     />
   );

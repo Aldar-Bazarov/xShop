@@ -1,9 +1,11 @@
-import { Title } from "@/components/ui/title";
+import { Title } from '@/components/ui/title';
 
-const HomePage = () => {
+export const Home = () => {
   return (
     <div className="container mx-auto p-5">
-      <Title size={2}>Добро пожаловать в <span className="text-primary">x</span>Shop!</Title>
+      <Title size={2}>
+        Добро пожаловать в <span className="text-primary">x</span>Shop!
+      </Title>
       <p className="text-2xl mb-10">
         xShop — это мощная CRM-система, разработанная специально для управления
         магазином. Наша платформа позволяет вам эффективно отслеживать продажи,
@@ -11,8 +13,8 @@ const HomePage = () => {
       </p>
       <p className="text-2xl mb-10">
         С помощью xShop вы сможете легко добавлять и редактировать товары,
-        управлять закупками и продажами, а также генерировать отчеты для
-        анализа эффективности вашего бизнеса.
+        управлять закупками и продажами, а также генерировать отчеты для анализа
+        эффективности вашего бизнеса.
       </p>
       <p className="text-2xl">
         Наша система интуитивно понятна и проста в использовании, что позволяет
@@ -21,5 +23,3 @@ const HomePage = () => {
     </div>
   );
 };
-
-export default HomePage; 

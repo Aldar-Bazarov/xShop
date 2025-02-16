@@ -9,7 +9,7 @@ export const AuthService = {
 
   logout() {
     localStorage.removeItem('token');
-    window.location.href = '/';
+    window.location.href = '/login';
   },
 
   getToken() {

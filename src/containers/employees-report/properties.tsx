@@ -2,10 +2,6 @@ import { DownArrowIcon } from '@/assets/icons/down-arrow-icon';
 import { EmployeeSalesInfo } from '@/store/reports.store';
 import { ColumnDef } from '@tanstack/react-table';
 import {
-  IReportChart,
-  IReportFilter,
-} from '../../components/protected-route/report-view';
-import {
   ChartConfig,
   ChartContainer,
   ChartLegend,
@@ -17,6 +13,7 @@ import { Bar, BarChart, Pie, PieChart, XAxis } from 'recharts';
 import { PopoverContent } from '../../components/ui/popover';
 import { Calendar } from '../../components/ui/calendar';
 import { Button } from '../../components/ui/button';
+import { IReportChart, IReportFilter } from '@/components/views';
 
 export const employeesReportColumns: ColumnDef<EmployeeSalesInfo>[] = [
   {

@@ -8,22 +8,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { FormView } from '@/components/form-view/form-view';
+import { searchEmployeeFields, searchEmployeeSchema } from './properties';
+import { FormView } from '@/components/views/form-view';
 
-const searchEmployeeSchema = z.object({
-  id: z.coerce.number().min(1, 'ID должен быть положительным числом'),
-});
-
-const formFields = [
-  {
-    name: 'id',
-    label: 'ID сотрудника',
-    type: 'number',
-    placeholder: 'Введите ID сотрудника',
-  },
-];
-
-export const FireEmployeePage = () => {
+export const FireEmployeeContainer = () => {
   const [currentEmployee, setCurrentEmployee] = useState<Employee | null>(null);
   const { loading, error, getEmployee, fireEmployee } = useEmployeesStore();
   const errorHandler = useErrorHandler();
@@ -73,7 +61,7 @@ export const FireEmployeePage = () => {
           title="Найти сотрудника"
           loading={loading}
           form={form}
-          fields={formFields}
+          fields={searchEmployeeFields}
           onSubmit={handleGetEmployee}
           submitText="Найти"
         />
