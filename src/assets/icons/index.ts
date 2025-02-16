@@ -1,0 +1,11 @@
+export { BanknoteIcon } from './banknote-icon';
+export { AddGoodIcon } from './add-good-icon';
+export { EmployeesReportIcon } from './employees-report-icon';
+export { FireEmployeeIcon } from './fire-employee-icon';
+export { GoodsReportIcon } from './goods-report-icon';
+export { NewEmployeeIcon } from './new-employee-icon';
+export { PurchaseIcon } from './purchase-icon';
+export { LogoutIcon } from './logout-icon';
+export { ResetIcon } from './reset-icon';
+export { DownArrowIcon } from './down-arrow-icon';
+export { FilterIcon } from './filter-icon';
