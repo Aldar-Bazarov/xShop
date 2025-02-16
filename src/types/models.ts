@@ -1,14 +1,27 @@
-export type Size =
-  | 'XXXS'
-  | 'XXS'
-  | 'XS'
-  | 'S'
-  | 'M'
-  | 'L'
-  | 'XL'
-  | 'XXL'
-  | 'XXXL';
+export const SIZES = [
+  'XXXS',
+  'XXS',
+  'XS',
+  'S',
+  'M',
+  'L',
+  'XL',
+  'XXL',
+  'XXXL',
+] as const;
 
+export const POSITIONS = [
+  {
+    value: 1,
+    name: 'Менеджер',
+  },
+  {
+    value: 2,
+    name: 'Продавец',
+  },
+];
+
+export type Size = (typeof SIZES)[number];
 export interface Position {
   id: number;
   name: string;
@@ -49,3 +62,20 @@ export interface Purchase {
   priceInKopeks: number;
   dateTime: string;
 }
+
+// export interface EmployeeReport {
+//   averageSale: number;
+//   employeeID: number;
+//   employeeName: string;
+//   percentOfAllSales: number;
+//   sumOfSales: number;
+// }
+
+// export interface GoodReport {
+//   goodID: 0;
+//   goodName: string;
+//   percentOfAllSales: 0;
+//   salesCount: 0;
+//   stockCount: 0;
+//   sumSales: 0;
+// }
