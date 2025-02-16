@@ -1,5 +1,5 @@
 import { Outlet, NavLink } from 'react-router';
-import { ModeToggle } from '../ui/mode-toggle';
+import { ThemeToggle } from '../ui/theme-toggle';
 import { Button } from '../ui/button';
 import { AuthService } from '@/services/auth.service';
 import {
@@ -76,7 +76,7 @@ export const AppLayout = () => {
     <SidebarProvider className="bg-secondary">
       <Sidebar className="bg-background">
         <SidebarHeader className="ml-10 mt-5">
-          <NavLink to={'/'} className="text-lg font-bold">
+          <NavLink to={'/'} className="text-lg font-bold w-fit">
             <span className="text-primary">x</span>Shop
           </NavLink>
         </SidebarHeader>
@@ -128,7 +128,7 @@ export const AppLayout = () => {
             <LogoutIcon />
             Logout
           </Button>
-          <ModeToggle />
+          <ThemeToggle />
         </SidebarFooter>
       </Sidebar>
       <SidebarInset className="flex-1 bg-secondary">

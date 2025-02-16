@@ -1,4 +1,4 @@
-import { ModeToggle } from '@/components/ui/mode-toggle';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -64,7 +64,7 @@ export const LoginContainer = () => {
 
   return (
     <div
-      className={`min-h-screen flex items-center justify-center ${theme === 'dark' ? 'bg-secondary' : 'bg-primary'}`}
+      className={`min-h-screen flex items-center justify-center ${theme !== 'light' ? 'bg-secondary' : 'bg-primary'}`}
     >
       <Card className="w-[630px] h-[735px] py-10 px-[33px]">
         <CardHeader className="text-center mb-8">
@@ -111,7 +111,7 @@ export const LoginContainer = () => {
         </CardContent>
       </Card>
       <div className="absolute top-2 right-2">
-        <ModeToggle className="bg-background text-primary" />
+        <ThemeToggle className="bg-background text-primary" />
       </div>
     </div>
   );
