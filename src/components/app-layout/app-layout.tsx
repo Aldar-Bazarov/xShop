@@ -76,9 +76,12 @@ export const AppLayout = () => {
     <SidebarProvider className="bg-secondary">
       <Sidebar className="bg-background">
         <SidebarHeader className="ml-10 mt-5">
-          <span className="text-lg font-bold">
+        <NavLink
+                        to={'/'}
+                        className="text-lg font-bold"
+                      >
             <span className="text-primary">x</span>Shop
-          </span>
+          </NavLink>
         </SidebarHeader>
         <SidebarContent>
           <SidebarGroup className="p-5">

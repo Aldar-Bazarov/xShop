@@ -14,7 +14,6 @@ import { useLocation, useNavigate } from 'react-router';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from '@/hooks/use-toast';
-import { Checkbox } from '@/components/ui/checkbox';
 import { AuthService } from '@/services/auth.service';
 import { useErrorHandler } from '@/hooks/use-error-handler';
 import {

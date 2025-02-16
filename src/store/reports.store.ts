@@ -37,10 +37,13 @@ interface ReportsState {
   error: string | null;
   getEmployeeSalesReport: (
     // TODO
+    // request: EmployeeSalesReportRequest
     request: any
   ) => Promise<EmployeeSalesInfo[]>;
-  goodSalesReport: (
-    request: GoodSalesReportRequest
+  getGoodSalesReport: (
+    // TODO
+    // request: GoodSalesReportRequest
+    request: any
   ) => Promise<GoodSalesInfo[]>;
 }
 
@@ -67,7 +70,7 @@ export const useReportsStore = create<ReportsState>((set) => ({
     }
   },
 
-  goodSalesReport: async (request) => {
+  getGoodSalesReport: async (request) => {
     set({ loading: true, error: null });
     try {
       // const response = await api.post('/reports/sales/goods', { dts: request });
