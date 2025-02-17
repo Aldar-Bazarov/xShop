@@ -1,23 +1,7 @@
 import { create } from 'zustand';
 import { api } from '@/infrastructure/axios';
 import mockData from './data.json';
-
-export interface EmployeeSalesInfo {
-  employeeID: number;
-  employeeName: string;
-  averageSale: number;
-  percentOfAllSales: number;
-  sumOfSales: number;
-}
-
-export interface GoodSalesInfo {
-  goodID: number;
-  goodName: string;
-  salesCount: number;
-  sumSales: number;
-  stockCount: number;
-  percentOfAllSales: number;
-}
+import { EmployeeSalesInfo, GoodSalesInfo } from '@/types/models';
 
 interface EmployeeSalesReportRequest {
   dt_from: string;
@@ -36,14 +20,10 @@ interface ReportsState {
   loading: boolean;
   error: string | null;
   getEmployeeSalesReport: (
-    // TODO
-    // request: EmployeeSalesReportRequest
-    request: any
+    request: EmployeeSalesReportRequest
   ) => Promise<EmployeeSalesInfo[]>;
   getGoodSalesReport: (
-    // TODO
-    // request: GoodSalesReportRequest
-    request: any
+    request: GoodSalesReportRequest
   ) => Promise<GoodSalesInfo[]>;
 }
 
@@ -60,6 +40,7 @@ export const useReportsStore = create<ReportsState>((set) => ({
   getEmployeeSalesReport: async (request) => {
     set({ loading: true, error: null });
     try {
+      // TODO
       // const response = await api.post('/reports/employees/sales', { request });
       return response.data.report.employeeSalesInfos;
     } catch (error) {
@@ -73,6 +54,7 @@ export const useReportsStore = create<ReportsState>((set) => ({
   getGoodSalesReport: async (request) => {
     set({ loading: true, error: null });
     try {
+      // TODO
       // const response = await api.post('/reports/sales/goods', { dts: request });
       return response.data.report.goodSalesInfos;
     } catch (error) {

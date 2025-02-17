@@ -6,11 +6,9 @@ import type { Employee } from '@/types/models';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { searchEmployeeFields, searchEmployeeSchema } from './properties';
-import { FormView } from '@/components/views/form-view';
 import { toLowerCaseKeys } from '@/lib/utils';
+import { FireEmployeeView } from '@/components/views/fire-view';
 
 export const FireEmployeeContainer = () => {
   const [currentEmployee, setCurrentEmployee] = useState<Employee | null>(null);
@@ -52,55 +50,13 @@ export const FireEmployeeContainer = () => {
   };
 
   return (
-    <div className="space-y-8">
-      <FormView
-        title="Найти сотрудника"
-        loading={loading}
-        form={form}
-        fields={searchEmployeeFields}
-        onSubmit={handleGetEmployee}
-        submitText="Найти"
-      />
-      {currentEmployee && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Информация о сотруднике</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-2">
-              <p>
-                <span className="font-semibold">ФИО:</span>{' '}
-                {currentEmployee.name}
-              </p>
-              <p>
-                <span className="font-semibold">Должность:</span>{' '}
-                {currentEmployee.position.name}
-              </p>
-              <p>
-                <span className="font-semibold">ИНН:</span>{' '}
-                {currentEmployee.inn}
-              </p>
-              <p>
-                <span className="font-semibold">СНИЛС:</span>{' '}
-                {currentEmployee.snils}
-              </p>
-              <p>
-                <span className="font-semibold">Телефон:</span>{' '}
-                {currentEmployee.phone}
-              </p>
-            </div>
-            <div className="flex justify-center">
-              <Button
-                variant="destructive"
-                onClick={handleFireEmployee}
-                disabled={loading}
-              >
-                Уволить сотрудника
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-    </div>
+    <FireEmployeeView
+      loading={loading}
+      form={form}
+      handleGetEmployee={handleGetEmployee}
+      handleFireEmployee={handleFireEmployee}
+      searchEmployeeFields={searchEmployeeFields}
+      currentEmployee={currentEmployee}
+    />
   );
 };

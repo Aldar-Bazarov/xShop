@@ -1,10 +1,11 @@
 import { DownArrowIcon } from '@/assets/icons/down-arrow-icon';
-import { GoodSalesInfo } from '@/store/reports.store';
 import { ColumnDef } from '@tanstack/react-table';
-import { IReportFilter } from '../../components/report-view';
 import { PopoverContent } from '../../components/ui/popover';
 import { Calendar } from '../../components/ui/calendar';
 import { Button } from '../../components/ui/button';
+import { GoodSalesInfo } from '@/types/models';
+import { IReportFilter } from '@/components/views';
+import { ISelectedFilters } from './types';
 
 export const goodsReportColumns: ColumnDef<GoodSalesInfo>[] = [
   {
@@ -110,22 +111,42 @@ export const goodsReportColumns: ColumnDef<GoodSalesInfo>[] = [
     cell: ({ row }) => <div>{parseFloat(row.getValue('stockCount'))}</div>,
   },
 ];
-
-export const goodsReportFilters: IReportFilter[] = [
+export const goodsReportFilters = (
+  selectedFilters: ISelectedFilters,
+  setSelectedFilters: React.Dispatch<React.SetStateAction<ISelectedFilters>>
+): IReportFilter[] => [
   {
     title: 'Дата с',
     content: () => (
-      <PopoverContent>
-        <Calendar />
-        <Button>Применить</Button>
-      </PopoverContent>
+      <>
+        <PopoverContent className="flex flex-col items-center">
+          <Calendar
+            selected={selectedFilters?.dt_from ?? new Date()}
+            onSelect={(_: any, date: Date) => {
+              setSelectedFilters((prev) => ({
+                ...prev,
+                dt_from: date,
+              }));
+            }}
+          />
+          <Button>Применить</Button>
+        </PopoverContent>
+      </>
     ),
   },
   {
     title: 'Дата по',
     content: () => (
-      <PopoverContent>
-        <Calendar />
+      <PopoverContent className="flex flex-col items-center">
+        <Calendar
+          selected={selectedFilters?.dt_to ?? new Date()}
+          onSelect={(_: any, date: Date) => {
+            setSelectedFilters((prev) => ({
+              ...prev,
+              dt_to: date,
+            }));
+          }}
+        />
         <Button>Применить</Button>
       </PopoverContent>
     ),

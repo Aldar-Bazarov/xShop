@@ -63,19 +63,19 @@ export interface Purchase {
   dateTime: string;
 }
 
-// export interface EmployeeReport {
-//   averageSale: number;
-//   employeeID: number;
-//   employeeName: string;
-//   percentOfAllSales: number;
-//   sumOfSales: number;
-// }
+export interface EmployeeSalesInfo {
+  averageSale: number;
+  employeeID: number;
+  employeeName: string;
+  percentOfAllSales: number;
+  sumOfSales: number;
+}
 
-// export interface GoodReport {
-//   goodID: 0;
-//   goodName: string;
-//   percentOfAllSales: 0;
-//   salesCount: 0;
-//   stockCount: 0;
-//   sumSales: 0;
-// }
+export interface GoodSalesInfo {
+  goodID: number;
+  goodName: string;
+  percentOfAllSales: number;
+  salesCount: number;
+  stockCount: number;
+  sumSales: number;
+}

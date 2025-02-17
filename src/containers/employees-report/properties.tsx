@@ -1,5 +1,4 @@
 import { DownArrowIcon } from '@/assets/icons/down-arrow-icon';
-import { EmployeeSalesInfo } from '@/store/reports.store';
 import { ColumnDef } from '@tanstack/react-table';
 import {
   ChartConfig,
@@ -15,7 +14,11 @@ import { Calendar } from '../../components/ui/calendar';
 import { Button } from '../../components/ui/button';
 import { IReportChart, IReportFilter } from '@/components/views';
 import { Title } from '@/components/ui/title';
-import { EmployeeReportFilterData } from './types';
+import { EmployeeReportFilterData, ISelectedFilters } from './types';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
+import { EmployeeSalesInfo } from '@/types/models';
 
 const PIE_CHART_COLORS = [
   '#172554',
@@ -129,43 +132,83 @@ export const employeesReportColumns: ColumnDef<EmployeeSalesInfo>[] = [
 ];
 
 export const employeesReportFilters = (
+  selectedFilters: ISelectedFilters,
+  setSelectedFilters: React.Dispatch<React.SetStateAction<ISelectedFilters>>,
   filterData?: EmployeeReportFilterData
 ): IReportFilter[] => [
   {
     title: 'Дата с',
     content: () => (
-      <PopoverContent className="flex flex-col items-center">
-        <Calendar />
-        <Button>Применить</Button>
-      </PopoverContent>
+      <>
+        <PopoverContent className="flex flex-col items-center">
+          <Calendar
+            selected={selectedFilters?.dt_from ?? new Date()}
+            onSelect={(_: any, date: Date) => {
+              setSelectedFilters((prev) => ({
+                ...prev,
+                dt_from: date,
+              }));
+            }}
+          />
+          <Button>Применить</Button>
+        </PopoverContent>
+      </>
     ),
   },
   {
     title: 'Дата по',
     content: () => (
       <PopoverContent className="flex flex-col items-center">
-        <Calendar />
+        <Calendar
+          selected={selectedFilters?.dt_to ?? new Date()}
+          onSelect={(_: any, date: Date) => {
+            setSelectedFilters((prev) => ({
+              ...prev,
+              dt_to: date,
+            }));
+          }}
+        />
         <Button>Применить</Button>
       </PopoverContent>
     ),
   },
-  // {
-  //   title: 'Сотрудники',
-  //   content: () => (
-  //     <PopoverContent className="flex flex-col items-center overflow-auto max-h-[300px]">
-  //       <Title size={6}>Сотрудники</Title>
-  //       {filterData?.employees.map((employee) => <>{employee}</>)}
-  //     </PopoverContent>
-  //   ),
-  // },
-  // {
-  //   title: 'Цена товара',
-  //   content: () => (
-  //     <PopoverContent className="flex flex-col items-center">
-  //       Place content for the popover here.
-  //     </PopoverContent>
-  //   ),
-  // },
+  {
+    title: 'Сотрудники',
+    content: () => (
+      <PopoverContent className="flex flex-col items-center overflow-auto max-h-[500px]">
+        <Title size={6}>Сотрудники</Title>
+        {filterData?.employees.map((employee, index) => (
+          <p className="w-full mb-2 py-2 px-4 bg-background rounded-lg border hover:bg-primary">
+            {++index}
+            {'. '}
+            {employee}
+          </p>
+        ))}
+      </PopoverContent>
+    ),
+  },
+  {
+    title: 'Цена товара',
+    content: () => (
+      <PopoverContent className="flex flex-col p-0">
+        <Title size={6} className="p-4 mb-0">
+          Цена
+        </Title>
+        <div className="flex gap-x-4 p-4">
+          <div>
+            <Label>От</Label>
+            <Input type="number" placeholder="0 ₽"></Input>
+          </div>
+          <div>
+            <Label>До</Label>
+            <Input type="number" placeholder="X ₽"></Input>
+          </div>
+        </div>
+        <Separator className="w-full my-4 self-center" />
+        <Button className="w-fit self-center py-4 px-8 mb-4">Применить</Button>
+      </PopoverContent>
+    ),
+  },
 ];
 
 export const employeesReportCharts: IReportChart[] = [
@@ -175,8 +218,8 @@ export const employeesReportCharts: IReportChart[] = [
     chartName: 'sumOfSalesData',
     chartConfig: {
       sumOfSales: {
-        label: 'Сумма продаж',
-        color: '#2563eb',
+        label: 'Сумма продаж ',
+        color: 'hsl(var(--primary))',
       },
     },
     chartContent: (chartConfig: ChartConfig, chartData: any) => (
@@ -185,12 +228,15 @@ export const employeesReportCharts: IReportChart[] = [
           <XAxis
             dataKey="employeeName"
             tickLine={false}
-            tickMargin={10}
-            axisLine={false}
+            tickMargin={0}
+            tickFormatter={(value) => value.slice(0, 3)}
           />
           <ChartTooltip content={<ChartTooltipContent />} />
-          <ChartLegend content={<ChartLegendContent />} />
-          <Bar dataKey="sumOfSales" radius={4} />
+          <Bar
+            dataKey="sumOfSales"
+            radius={4}
+            fill={chartConfig.sumOfSales.color} // Применение цвета из config
+          />
         </BarChart>
       </ChartContainer>
     ),
@@ -219,7 +265,7 @@ export const employeesReportCharts: IReportChart[] = [
             {chartData.map((_: any, index: number) => (
               <Cell
                 key={`cell-${index}`}
-                fill={PIE_CHART_COLORS[index % PIE_CHART_COLORS.length]}
+                fill={`hsl(var(--chart-${index % 6.1}))`}
               />
             ))}
           </Pie>
