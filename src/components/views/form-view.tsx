@@ -94,33 +94,35 @@ export const FormView = ({
   );
 
   return (
-    <LoadingSpinner loading={loading} className="space-y-8">
+    <>
       <Title>{title}</Title>
-      <Card className="p-8">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <div className="flex flex-wrap justify-center gap-4">
-              {fields.map((field, index) => (
-                <div
-                  key={field.name}
-                  className={`${
-                    index === 0 && fields.length % 2 !== 0
-                      ? 'w-full flex justify-center'
-                      : ''
-                  }`}
-                >
-                  {renderFormField(field)}
-                </div>
-              ))}
-            </div>
-            <div className="flex justify-center">
-              <Button type="submit" className="w-fit py-6 px-28 mt-4">
-                {submitText}
-              </Button>
-            </div>
-          </form>
-        </Form>
-      </Card>
-    </LoadingSpinner>
+      <LoadingSpinner loading={loading} className="space-y-8">
+        <Card className="p-8">
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <div className="flex flex-wrap justify-center gap-4">
+                {fields.map((field, index) => (
+                  <div
+                    key={field.name}
+                    className={`${
+                      index === 0 && fields.length % 2 !== 0
+                        ? 'w-full flex justify-center'
+                        : ''
+                    }`}
+                  >
+                    {renderFormField(field)}
+                  </div>
+                ))}
+              </div>
+              <div className="flex justify-center">
+                <Button type="submit" className="w-fit py-6 px-28 mt-4">
+                  {submitText}
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </Card>
+      </LoadingSpinner>
+    </>
   );
 };

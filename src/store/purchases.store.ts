@@ -12,7 +12,7 @@ interface PurchasesState {
   purchases: Purchase[];
   loading: boolean;
   error: string | null;
-  createPurchase: (purchase: NewPurchaseRequest) => Promise<Purchase>;
+  createPurchase: (purchase: NewPurchaseRequest) => void;
 }
 
 export const usePurchasesStore = create<PurchasesState>((set) => ({
@@ -23,8 +23,7 @@ export const usePurchasesStore = create<PurchasesState>((set) => ({
   createPurchase: async (purchase) => {
     set({ loading: true, error: null });
     try {
-      const response = await api.post('/crm/purchases', { purchase });
-      return response.data.purchase;
+      await api.post('/crm/purchases', { purchase });
     } catch (error) {
       set({ error: 'Ошибка при создании закупки' });
       throw error;

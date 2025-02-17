@@ -1,9 +1,9 @@
+import { useAuthStore } from '@/store/auth.store';
 import { Navigate, useLocation } from 'react-router';
 
-import { AuthService } from '@/services/auth.service';
-
 export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const token = AuthService.getToken();
+  const { getToken } = useAuthStore();
+  const token = getToken();
   const location = useLocation();
 
   if (!token) {

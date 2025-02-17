@@ -15,18 +15,17 @@ export const CreateSaleContainer = () => {
     resolver: zodResolver(createSaleSchema),
     defaultValues: {
       count: 0,
-      goodId: 0,
+      good_id: 0,
     },
   });
 
   const onSubmit = async (data: z.infer<typeof createSaleSchema>) => {
     try {
-      // await createSale(data);
+      await createSale(data);
       toast({
         title: 'Успешно',
         description: 'Продажа создана',
       });
-      form.reset();
     } catch (error) {
       errorHandler(error);
     }

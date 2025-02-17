@@ -1,7 +1,6 @@
 import { Outlet, NavLink } from 'react-router';
 import { ThemeToggle } from '../ui/theme-toggle';
 import { Button } from '../ui/button';
-import { AuthService } from '@/services/auth.service';
 import {
   Sidebar,
   SidebarProvider,
@@ -28,6 +27,7 @@ import {
 } from '@/assets/icons';
 import { Separator } from '../ui/separator';
 import { LogoutIcon } from '@/assets/icons/logout-icon';
+import { useAuthStore } from '@/store/auth.store';
 
 const menuItems = {
   main: [
@@ -72,6 +72,7 @@ const menuItems = {
 };
 
 export const AppLayout = () => {
+  const { logout } = useAuthStore();
   return (
     <SidebarProvider className="bg-secondary">
       <Sidebar className="bg-background">
@@ -124,7 +125,7 @@ export const AppLayout = () => {
         </SidebarContent>
         <Separator />
         <SidebarFooter className="flex flex-row justify-between items-center">
-          <Button variant="ghost" onClick={() => AuthService.logout()}>
+          <Button variant="ghost" onClick={() => logout()}>
             <LogoutIcon />
             Logout
           </Button>

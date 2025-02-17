@@ -7,7 +7,11 @@ interface EmployeesState {
   loading: boolean;
   error: Error | null;
   getEmployee: (id: number) => Promise<Employee>;
-  createEmployee: (employee: Omit<Employee, 'id'>) => Promise<Employee>;
+  createEmployee: (
+    employee: Omit<Employee, 'id' | 'position'> & {
+      position: Pick<Position, 'id'>;
+    }
+  ) => void;
   fireEmployee: (id: number) => Promise<void>;
   getSalary: (id: number) => Promise<Pick<Position, 'salaryInKopeks'>>;
   updateSalary: (id: number, salaryInKopeks: number) => Promise<void>;
@@ -21,21 +25,8 @@ export const useEmployeesStore = create<EmployeesState>((set, get) => ({
   getEmployee: async (id) => {
     set({ loading: true, error: null });
     try {
-      // const response = await api.get(`/crm/employees/${id}`);
-      // return response.data;
-      return {
-        id: 12,
-        name: 'Vova',
-        inn: '1234567890',
-        phone: '+7(999)999-99-99',
-        snils: '111-111-111-11',
-        position: {
-          id: 1,
-          name: 'Менеджер',
-          salaryInKopeks: 500000,
-          percent: 0.5,
-        },
-      };
+      const response = await api.get(`/crm/employees/${id}`);
+      return response.data.employee;
     } catch (e) {
       set({ error: new Error('Ошибка при получении сотрудника') });
       console.error(e);
@@ -48,8 +39,7 @@ export const useEmployeesStore = create<EmployeesState>((set, get) => ({
   createEmployee: async (employee) => {
     set({ loading: true, error: null });
     try {
-      const response = await api.post('/crm/employees', { employee });
-      return response.data.employee;
+      await api.post('/crm/employees', { employee });
     } catch (e) {
       set({ error: new Error('Ошибка при создании сотрудника') });
       console.error(e);

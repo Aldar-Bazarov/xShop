@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router';
 import { Toaster } from '@/components/ui/toaster';
-import { AppLayout } from './components/hoc';
+import { AppLayout, ProtectedRoute } from './components/hoc';
 import { LoginContainer } from './containers/login/login';
 import { CreateEmployeeContainer } from './containers/create-employee/create-employee';
 import { CreateGoodContainer } from './containers/create-good/create-good';
@@ -19,9 +19,9 @@ function App() {
         <Route path="login" element={<LoginContainer />} />
         <Route
           element={
-            // <ProtectedRoute>
-            <AppLayout />
-            // </ProtectedRoute>
+            <ProtectedRoute>
+              <AppLayout />
+            </ProtectedRoute>
           }
         >
           <Route index element={<Home />} />

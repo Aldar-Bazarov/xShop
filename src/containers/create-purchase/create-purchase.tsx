@@ -14,20 +14,19 @@ export const CreatePurchaseContainer = () => {
   const form = useForm<z.infer<typeof createPurchaseSchema>>({
     resolver: zodResolver(createPurchaseSchema),
     defaultValues: {
-      priceInKopeks: 0,
+      price_in_kopeks: 0,
       count: 0,
-      goodId: 0,
+      good_id: 0,
     },
   });
 
   const onSubmit = async (data: z.infer<typeof createPurchaseSchema>) => {
     try {
-      // await createPurchase(data);
+      await createPurchase(data);
       toast({
         title: 'Успешно',
         description: 'Закупка создана',
       });
-      form.reset();
     } catch (error) {
       errorHandler(error);
     }

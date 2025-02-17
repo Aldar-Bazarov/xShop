@@ -14,19 +14,19 @@ export const CreateGoodContainer = () => {
   const form = useForm<z.infer<typeof createGoodSchema>>({
     resolver: zodResolver(createGoodSchema),
     defaultValues: {
+      name: '',
       count: 0,
-      size: '',
+      priceInKopeks: 0,
     },
   });
 
   const onSubmit = async (data: z.infer<typeof createGoodSchema>) => {
     try {
-      // await createGood(data);
+      await createGood(data);
       toast({
         title: 'Успешно',
         description: 'Товар создан',
       });
-      form.reset();
     } catch (error) {
       errorHandler(error);
     }

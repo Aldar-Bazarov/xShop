@@ -10,17 +10,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { searchEmployeeFields, searchEmployeeSchema } from './properties';
 import { FormView } from '@/components/views/form-view';
+import { toLowerCaseKeys } from '@/lib/utils';
 
 export const FireEmployeeContainer = () => {
   const [currentEmployee, setCurrentEmployee] = useState<Employee | null>(null);
-  const { loading, error, getEmployee, fireEmployee } = useEmployeesStore();
+  const { loading, getEmployee, fireEmployee } = useEmployeesStore();
   const errorHandler = useErrorHandler();
 
   const form = useForm<z.infer<typeof searchEmployeeSchema>>({
     resolver: zodResolver(searchEmployeeSchema),
-    defaultValues: {
-      id: undefined,
-    },
   });
 
   const handleGetEmployee = async (
@@ -28,8 +26,7 @@ export const FireEmployeeContainer = () => {
   ) => {
     try {
       const employee = await getEmployee(data.id);
-      setCurrentEmployee(employee);
-      form.reset();
+      setCurrentEmployee(toLowerCaseKeys(employee) as Employee);
       toast({
         title: 'Успешно',
         description: 'Данные сотрудника получены',
@@ -43,7 +40,7 @@ export const FireEmployeeContainer = () => {
     if (!currentEmployee) return;
 
     try {
-      // await fireEmployee(currentEmployee.id);
+      await fireEmployee(currentEmployee.id);
       setCurrentEmployee(null);
       toast({
         title: 'Успешно',
@@ -56,16 +53,15 @@ export const FireEmployeeContainer = () => {
 
   return (
     <div className="space-y-8">
-      {!currentEmployee ? (
-        <FormView
-          title="Найти сотрудника"
-          loading={loading}
-          form={form}
-          fields={searchEmployeeFields}
-          onSubmit={handleGetEmployee}
-          submitText="Найти"
-        />
-      ) : (
+      <FormView
+        title="Найти сотрудника"
+        loading={loading}
+        form={form}
+        fields={searchEmployeeFields}
+        onSubmit={handleGetEmployee}
+        submitText="Найти"
+      />
+      {currentEmployee && (
         <Card>
           <CardHeader>
             <CardTitle>Информация о сотруднике</CardTitle>

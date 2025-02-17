@@ -14,7 +14,6 @@ import { useLocation, useNavigate } from 'react-router';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from '@/hooks/use-toast';
-import { AuthService } from '@/services/auth.service';
 import { useErrorHandler } from '@/hooks/use-error-handler';
 import {
   Card,
@@ -24,6 +23,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { useTheme } from '@/components/providers/theme-provider';
+import { useAuthStore } from '@/store/auth.store';
 
 const formSchema = z.object({
   login: z.string().nonempty({
@@ -40,6 +40,7 @@ export const LoginContainer = () => {
   const navigate = useNavigate();
   const errorHandler = useErrorHandler();
   const { theme } = useTheme();
+  const { login } = useAuthStore();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -52,11 +53,13 @@ export const LoginContainer = () => {
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
-      await AuthService.login(data.login, data.password);
+      await login(data.login, data.password);
       toast({
         title: 'Вы вошли в систему',
       });
-      navigate(location.state.from.pathname ?? 'employees', { replace: true });
+      navigate(location.state?.from?.pathname ?? '/', {
+        replace: true,
+      });
     } catch (error) {
       errorHandler(error);
     }
@@ -64,7 +67,9 @@ export const LoginContainer = () => {
 
   return (
     <div
-      className={`min-h-screen flex items-center justify-center ${theme !== 'light' ? 'bg-secondary' : 'bg-primary'}`}
+      className={`min-h-screen flex items-center justify-center ${
+        theme !== 'light' ? 'bg-secondary' : 'bg-primary'
+      }`}
     >
       <Card className="w-[630px] h-[735px] py-10 px-[33px]">
         <CardHeader className="text-center mb-8">

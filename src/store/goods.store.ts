@@ -7,7 +7,7 @@ interface GoodsState {
   loading: boolean;
   error: string | null;
   getGood: (id: number) => Promise<Good>;
-  createGood: (good: Omit<Good, 'id'>) => Promise<Good>;
+  createGood: (good: Omit<Good, 'id'>) => void;
   updateGood: (id: number, good: Omit<Good, 'id'>) => Promise<void>;
 }
 
@@ -32,8 +32,7 @@ export const useGoodsStore = create<GoodsState>((set) => ({
   createGood: async (good) => {
     set({ loading: true, error: null });
     try {
-      const response = await api.post('/crm/goods', { good });
-      return response.data.good;
+      await api.post('/crm/goods', { good });
     } catch (error) {
       set({ error: 'Ошибка при создании товара' });
       throw error;

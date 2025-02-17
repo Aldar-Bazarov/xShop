@@ -11,7 +11,7 @@ interface SalesState {
   sales: Sale[];
   loading: boolean;
   error: string | null;
-  createSale: (sale: NewSaleRequest) => Promise<Sale>;
+  createSale: (sale: NewSaleRequest) => void;
 }
 
 export const useSalesStore = create<SalesState>((set) => ({
@@ -22,10 +22,19 @@ export const useSalesStore = create<SalesState>((set) => ({
   createSale: async (sale) => {
     set({ loading: true, error: null });
     try {
-      const response = await api.post('/crm/sales', { sale });
-      return response.data.sale;
+      await api.post<Sale>(
+        '/crm/sales',
+        { sale },
+        {
+          headers: {
+            Authorization: 1,
+          },
+        }
+      );
     } catch (error) {
-      set({ error: 'Ошибка при создании продажи' });
+      set({
+        error: `Ошибка при создании продажи`,
+      });
       throw error;
     } finally {
       set({ loading: false });

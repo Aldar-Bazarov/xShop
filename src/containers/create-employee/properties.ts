@@ -2,7 +2,9 @@ import { POSITIONS } from '@/types/models';
 import { z } from 'zod';
 
 export const createEmployeeSchema = z.object({
+  surname: z.string().min(1, 'Введите фамилию'),
   name: z.string().min(1, 'Введите имя'),
+  patronymic: z.string().min(1, 'Введите отчество'),
   inn: z.string().regex(/^\d{10}$|^\d{12}$/, {
     message: 'ИНН состоит из 10 или 12 цифр',
   }),
@@ -11,18 +13,15 @@ export const createEmployeeSchema = z.object({
   }),
   phone: z
     .string()
-    .regex(
-      /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/,
-      {
-        message: 'Введите номер телефона формата +7 999 999 99 99',
-      }
-    ),
-  position: z.number().min(1, 'Выберите должность'),
+    .regex(/^(\+7|7|8)?[489][0-9]{2}[0-9]{3}?[0-9]{2}?[0-9]{2}$/, {
+      message: 'Введите номер телефона формата +79999999999',
+    }),
+  positionID: z.coerce.number({ message: 'Выберите должность' }),
 });
 
 export const createEmployeeFields = [
   {
-    name: 'position',
+    name: 'positionID',
     label: 'Должность',
     placeholder: 'Выберите должность',
     isSelect: true,
@@ -31,8 +30,10 @@ export const createEmployeeFields = [
       label: pos.name,
     })),
   },
-  { name: 'name', label: 'ФИО', placeholder: 'Иванов Иван Иванович' },
-  { name: 'inn', label: 'ИНН', placeholder: '123456789012' },
-  { name: 'snils', label: 'СНИЛС', placeholder: '123-456-789-01' },
-  { name: 'phone', label: 'Телефон', placeholder: '+7(999)999-99-99' },
+  { name: 'surname', label: 'Фамилия', placeholder: 'Введите фамилию' },
+  { name: 'name', label: 'Имя', placeholder: 'Введите имя' },
+  { name: 'patronymic', label: 'Отчество', placeholder: 'Введите отчество' },
+  { name: 'inn', label: 'ИНН', placeholder: 'Введите ИНН' },
+  { name: 'snils', label: 'СНИЛС', placeholder: 'Введите СНИЛС' },
+  { name: 'phone', label: 'Телефон', placeholder: 'Введите номер телефона' },
 ];

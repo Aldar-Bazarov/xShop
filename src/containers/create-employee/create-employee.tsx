@@ -14,22 +14,30 @@ export const CreateEmployeeContainer = () => {
   const form = useForm<z.infer<typeof createEmployeeSchema>>({
     resolver: zodResolver(createEmployeeSchema),
     defaultValues: {
+      surname: '',
       name: '',
+      patronymic: '',
       inn: '',
       snils: '',
       phone: '',
-      position: undefined,
     },
   });
 
   const onSubmit = async (data: z.infer<typeof createEmployeeSchema>) => {
     try {
-      // await createEmployee(data);
+      await createEmployee({
+        name: `${data.surname} ${data.name} ${data.patronymic}`,
+        inn: data.inn,
+        phone: data.phone,
+        snils: data.snils,
+        position: {
+          id: data.positionID,
+        },
+      });
       toast({
         title: 'Успешно',
         description: 'Сотрудник создан',
       });
-      form.reset();
     } catch (error) {
       errorHandler(error);
     }
