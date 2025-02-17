@@ -3,8 +3,6 @@ import { ColumnDef } from '@tanstack/react-table';
 import {
   ChartConfig,
   ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from '../../components/ui/chart';
@@ -19,21 +17,6 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { EmployeeSalesInfo } from '@/types/models';
-
-const PIE_CHART_COLORS = [
-  '#172554',
-  '#0ea5e9',
-  '#1e3a8a',
-  '#0284c7',
-  '#1e40af',
-  '#0369a1',
-  '#1d4ed8',
-  '#075985',
-  '#2563eb',
-  '#0c4a6e',
-  '#3b82f6',
-  '#082f49',
-];
 
 export const employeesReportColumns: ColumnDef<EmployeeSalesInfo>[] = [
   {

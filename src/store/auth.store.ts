@@ -17,6 +17,7 @@ export const useAuthStore = create<AuthState>((set) => ({
         login: username,
         password,
       });
+      console.log(access_token)
       // TODO
       localStorage.setItem('token', '1');
     } catch (error) {
