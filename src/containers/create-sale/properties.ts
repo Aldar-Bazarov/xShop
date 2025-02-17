@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
 export const createSaleSchema = z.object({
-  count: z.number().min(1, 'Количество должно быть больше 0'),
-  goodId: z.number().min(1, 'Выберите товар'),
+  count: z.coerce.number().min(1, 'Количество должно быть больше 0'),
+  goodId: z.coerce.number().min(1, 'Выберите товар'),
 });
 
 export const createSaleFields = [

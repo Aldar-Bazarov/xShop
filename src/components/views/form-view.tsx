@@ -16,9 +16,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Card, CardTitle } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { UseFormReturn } from 'react-hook-form';
 import { LoadingSpinner } from '../ui/loading-overlay';
+import { Title } from '../ui/title';
 
 interface FormField {
   name: string;
@@ -94,7 +95,7 @@ export const FormView = ({
 
   return (
     <LoadingSpinner loading={loading} className="space-y-8">
-      <CardTitle>{title}</CardTitle>
+      <Title>{title}</Title>
       <Card className="p-8">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">

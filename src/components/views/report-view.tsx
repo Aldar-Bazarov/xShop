@@ -48,7 +48,7 @@ import { ChartConfig } from './../ui/chart';
 
 export interface IReportFilter {
   title: string;
-  content: () => React.ReactNode;
+  content: (data?: any) => React.ReactNode;
 }
 
 export interface IReportChart {
@@ -91,7 +91,7 @@ export function ReportView<TData, TValue>({
   });
 
   return (
-    <div className="w-full">
+    <div>
       <div className="flex items-center gap-x-5">
         <Title className="m-0 mr-12">{title}</Title>
         {charts &&
@@ -100,13 +100,14 @@ export function ReportView<TData, TValue>({
               <DialogTrigger className="bg-primary text-primary-foreground px-4 py-1 rounded-md h-fit">
                 {chart.buttonTitle}
               </DialogTrigger>
-              <DialogContent>
+              <DialogContent className="w-full">
                 <DialogHeader>
                   <DialogTitle>{chart.chartTitle}</DialogTitle>
-                  {chart.chartContent(
-                    chart.chartConfig,
-                    chartsData[chart.chartName]
-                  )}
+                  {chartsData &&
+                    chart.chartContent(
+                      chart.chartConfig,
+                      chartsData[chart.chartName]
+                    )}
                 </DialogHeader>
               </DialogContent>
             </Dialog>
@@ -126,7 +127,7 @@ export function ReportView<TData, TValue>({
                   <DownArrowIcon className="h-2 w-2" />
                 </p>
               </PopoverTrigger>
-              {filter.content()}
+              {filter.content(filter)}
               <Separator orientation="vertical" className="h-20" />
             </Popover>
           ))}

@@ -11,13 +11,11 @@ export const GoodsReportContainer = () => {
     getGoodSalesReport(1).then((data) => setData(data));
   }, []);
   return (
-    <div className="container mx-auto py-10">
-      <ReportView
-        title="Отчёт по товарам"
-        data={data}
-        filters={goodsReportFilters}
-        columns={goodsReportColumns}
-      />
-    </div>
+    <ReportView
+      title="Отчёт по товарам"
+      data={data}
+      filters={goodsReportFilters}
+      columns={goodsReportColumns}
+    />
   );
 };

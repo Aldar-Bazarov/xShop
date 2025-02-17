@@ -2,8 +2,8 @@ import { Title } from '@/components/ui/title';
 
 export const Home = () => {
   return (
-    <div className="container mx-auto p-5">
-      <Title size={2}>
+    <div className="container mx-auto">
+      <Title>
         Добро пожаловать в <span className="text-primary">x</span>Shop!
       </Title>
       <p className="text-2xl mb-10">
