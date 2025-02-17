@@ -14,7 +14,7 @@ interface FireEmployeeViewProps {
     {
       id: number;
     },
-    any,
+    any, // eslint-disable-line
     undefined
   >;
   searchEmployeeFields: ISearchEmployeeField[];

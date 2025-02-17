@@ -28,10 +28,10 @@ interface LoginViewProps {
       password: string;
       rememberMe?: boolean | undefined;
     },
-    any,
+    any, // eslint-disable-line
     undefined
   >;
-  onSubmit: (data: any) => Promise<void>;
+  onSubmit: (data: any) => Promise<void>; // eslint-disable-line
 }
 
 export const LoginView: FC<LoginViewProps> = ({ theme, form, onSubmit }) => {

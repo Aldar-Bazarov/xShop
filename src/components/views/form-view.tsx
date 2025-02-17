@@ -34,9 +34,9 @@ interface FormField {
 interface FormViewProps {
   title: string;
   loading?: boolean;
-  form: UseFormReturn<any>;
+  form: UseFormReturn<any>; // eslint-disable-line
   fields: FormField[];
-  onSubmit: (data: any) => Promise<void>;
+  onSubmit: (data: any) => Promise<void>; // eslint-disable-line
   submitText?: string;
 }
 

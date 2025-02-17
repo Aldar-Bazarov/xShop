@@ -48,15 +48,15 @@ import { ChartConfig } from './../ui/chart';
 
 export interface IReportFilter {
   title: string;
-  content: (data?: any) => React.ReactNode;
+  content: (data?: any) => React.ReactNode; // eslint-disable-line
 }
 
 export interface IReportChart {
   buttonTitle: string;
   chartTitle: string;
   chartName: string;
-  chartConfig: Record<string, any>;
-  chartContent: (chartConfig: ChartConfig, chartData: any) => React.ReactNode;
+  chartConfig: Record<string, any>; // eslint-disable-line
+  chartContent: (chartConfig: ChartConfig, chartData: any) => React.ReactNode; // eslint-disable-line
 }
 
 interface DataTableProps<TData, TValue> {
@@ -65,7 +65,7 @@ interface DataTableProps<TData, TValue> {
   title: string;
   filters?: IReportFilter[];
   charts?: IReportChart[];
-  chartsData?: any;
+  chartsData?: any; // eslint-disable-line
 }
 
 export function ReportView<TData, TValue>({

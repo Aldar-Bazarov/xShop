@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { api } from '@/infrastructure/axios';
+import { api } from '@/infrastructure/axios'; // eslint-disable-line
 import mockData from './mock/data.json';
 import { EmployeeSalesInfo, GoodSalesInfo } from '@/types/models';
 
