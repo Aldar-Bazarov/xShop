@@ -265,7 +265,7 @@ export const employeesReportCharts: IReportChart[] = [
             {chartData.map((_: any, index: number) => (
               <Cell
                 key={`cell-${index}`}
-                fill={`hsl(var(--chart-${index % 6.1}))`}
+                fill={`hsl(var(--chart-${index % 6}))`}
               />
             ))}
           </Pie>

@@ -1,5 +1,6 @@
 {
-  "employeeSalesInfos": [{
+  "employeeSalesInfos": [
+    {
       "employeeID": 773,
       "sumOfSales": 475,
       "percentOfAllSales": 440,
@@ -154,7 +155,8 @@
       "averageSale": 117
     }
   ],
-  "goodSalesInfos": [{
+  "goodSalesInfos": [
+    {
       "goodID": 43,
       "goodName": "Ianthe Fiddler",
       "percentOfAllSales": 90,

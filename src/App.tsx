@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router';
 import { Toaster } from '@/components/ui/toaster';
-import { AppLayout, ProtectedRoute } from './components/hoc';
 import { LoginContainer } from './containers/login/login';
 import { CreateEmployeeContainer } from './containers/create-employee/create-employee';
 import { CreateGoodContainer } from './containers/create-good/create-good';
@@ -11,6 +10,8 @@ import { FireEmployeeContainer } from './containers/fire-employee/fire-employee'
 import { GoodsReportContainer } from './containers/goods-report/goods-report';
 import { Home } from './components/views/home';
 import { NotFound } from './components/views/not-found';
+import { AppLayout } from './components/hoc/app-layout';
+import { ProtectedRoute } from './components/hoc/protected-route';
 
 function App() {
   return (

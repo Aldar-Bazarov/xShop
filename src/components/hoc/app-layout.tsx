@@ -1,4 +1,4 @@
-import { Outlet, NavLink } from 'react-router';
+import { Outlet, NavLink, useLocation } from 'react-router';
 import { ThemeToggle } from '../ui/theme-toggle';
 import { Button } from '../ui/button';
 import {
@@ -73,6 +73,8 @@ const menuItems = {
 
 export const AppLayout = () => {
   const { logout } = useAuthStore();
+
+  const location = useLocation();
   return (
     <SidebarProvider className="bg-secondary">
       <Sidebar className="bg-background">
@@ -87,7 +89,10 @@ export const AppLayout = () => {
               <SidebarMenu>
                 {menuItems.main.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={item.url === location.pathname}
+                    >
                       <NavLink
                         to={item.url}
                         className="flex items-center gap-2"
@@ -108,10 +113,13 @@ export const AppLayout = () => {
               <SidebarMenu>
                 {menuItems.report.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={item.url === window.location.pathname}
+                    >
                       <NavLink
                         to={item.url}
-                        className="flex items-center gap-2"
+                        className={`flex items-center gap-2 ${item.url === window.location.pathname ? 'bg-primary' : ''}`}
                       >
                         {item.icon}
                         <span>{item.title}</span>

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { api } from '@/infrastructure/axios';
-import mockData from './data.json';
+import mockData from './mock/data.json';
 import { EmployeeSalesInfo, GoodSalesInfo } from '@/types/models';
 
 interface EmployeeSalesReportRequest {
