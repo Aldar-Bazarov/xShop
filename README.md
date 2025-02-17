@@ -1,50 +1,48 @@
-# React + TypeScript + Vite
+## Установка
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Для начала работы с проектом, выполните следующие шаги:
 
-Currently, two official plugins are available:
+1. Перейдите в директорию проекта:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+   ```bash
+   cd xShop_GUI
+   ```
 
-## Expanding the ESLint configuration
+2. Устновите пакетный менеджер глобально
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+   ```bash
+   npm install -g yarn
+   ```
 
-- Configure the top-level `parserOptions` property like this:
+3. Установите зависимости:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+   ```bash
+   yarn
+   ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+4. Запустите проект в режиме разработки:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
+   ```bash
+   yarn run dev
+   ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-});
-```
+Теперь вы можете открыть приложение в браузере по адресу [http://localhost:5173](http://localhost:5173).
+
+## Структура проекта
+
+- `src/` - основной код приложения
+  - `components/` - переиспользуемые компоненты
+  - `containers/` - контейнеры, которые управляют состоянием и логикой
+  - `hooks/` - пользовательские хуки
+  - `store/` - состояние приложения
+  - `views/` - представления для различных страниц
+  - `styles/` - стили приложения
+  - `types/` - типы и интерфейсы
+
+## Используемые технологии
+
+- **React** - библиотека для построения пользовательских интерфейсов
+- **TypeScript** - язык программирования, добавляющий статическую типизацию к JavaScript
+- **Vite** - инструмент сборки для быстрого развертывания приложений
+- **Zustand** - библиотека для управления состоянием
+- **Tailwind CSS** - утилитарный CSS-фреймворк для быстрого создания пользовательских интерфейсов
